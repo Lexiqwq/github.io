@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@700&display=swap" rel="stylesheet">
+  <title>Fishy</title>
+  <style>
+    canvas {
+      background-color: #87CEEB; /* azul agua */
+      display: block;
+      margin: auto;
+       
+    }
+  </style>
+</head>
+<body>
+  <canvas id="acuario" width="600" height="400"></canvas>
+
+  
+  <script>
+    const canvas = document.getElementById("acuario");
+    const ctx = canvas.getContext("2d");
+
+    // Definimos el pez con más detalles
+    const pez = [
+      // cuerpo principal
+      {x:0,y:1},{x:1,y:0},{x:1,y:1},{x:1,y:2},
+      {x:2,y:0},{x:2,y:1},{x:2,y:2},
+      {x:3,y:0},{x:3,y:1},{x:3,y:2},
+      {x:4,y:1},
+
+      // cola
+      {x:-1,y:1},{x:-2,y:0},{x:-2,y:2},
+
+      // aleta superior
+      {x:2,y:-1},
+
+      // aleta inferior
+      {x:2,y:3},
+
+      // ojo
+      {x:3,y:1.5}
+    ];
+
+    let posX = 200;
+    let posY = 200;
+    let velocidad = 2;
+
+    function dibujarPez(x, y) {
+      pez.forEach((cuadro, i) => {
+        if (i === pez.length - 1) {
+          ctx.fillStyle = "white"; // ojo
+          ctx.fillRect(x + cuadro.x*10, y + cuadro.y*10, 10, 10);
+          ctx.fillStyle = "black"; // pupila
+          ctx.fillRect(x + cuadro.x*10+3, y + cuadro.y*10+3, 4, 4);
+        } else if (cuadro.x < 0) {
+          ctx.fillStyle = "red"; // cola
+          ctx.fillRect(x + cuadro.x*10, y + cuadro.y*10, 10, 10);
+        } else if (cuadro.y === -1 || cuadro.y === 3) {
+          ctx.fillStyle = "yellow"; // aletas
+          ctx.fillRect(x + cuadro.x*10, y + cuadro.y*10, 10, 10);
+        } else {
+          ctx.fillStyle = "orange"; // cuerpo
+          ctx.fillRect(x + cuadro.x*10, y + cuadro.y*10, 10, 10);
+        }
+      });
+    }
+
+    function animar() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      dibujarPez(posX, posY);
+
+      // Movimiento ondulado
+      posX += velocidad;
+      posY += Math.sin(posX/20); // trayectoria sinusoidal
+
+      // Rebote en los bordes
+      if (posX > canvas.width - 60 || posX < 0) {
+        velocidad *= -1;
+      }
+
+      requestAnimationFrame(animar);
+    }
+
+    animar();
+  </script>
+</body>
+<style>
+  p {
+  font-family: "Edu NSW ACT Foundation", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+    }
+
+</style>
+
+<p> Fishy, Glu Glu </p>
+</html>
+
