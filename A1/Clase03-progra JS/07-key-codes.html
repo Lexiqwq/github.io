@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+    <meta charset="utf-8">
+    <title>Key Codes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
+  <head>
+    <style>
+      body { 
+        background-color:rgb(212, 27, 27);
+        text-align: center;
+      }
+      canvas {
+        background-color:rgb(255, 255, 255);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="1000" height="800"></canvas>
+    <aside>Press A to E</aside>
+
+<style>
+  body {
+  font-family: "Knewave", system-ui;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+</style>
+    
+    <script src="keycodes.js"></script>
+    <script>
+    window.onload = function () {
+      var canvas = document.getElementById("canvas");
+      var context = canvas.getContext("2d");
+      var x = 200;
+      var y = 200;
+      context.font = '40pt Calibri';
+      context.fillStyle = 'black';
+      context.fillText('Im Star', x+230, y-50); //<== para poner texto en el canvas
+
+      var imagen= new Image(); // variable para guardar la imagen
+      imagen.src = "Startcar.jpg"; // fuente de donde toma la imagen
+      var imagen2= new Image(); // variable para guardar la imagen
+      imagen2.src = "Catsilly1.jpg"; // fuente de donde toma la imagen
+      var imagen3= new Image(); // variable para guardar la imagen
+      imagen3.src = "Catsilly2.jpg"; // fuente de donde toma la imagen
+      var imagen4= new Image(); // variable para guardar la imagen
+      imagen4.src = "Catsilly3.jpg"; // fuente de donde toma la imagen
+      var imagen5= new Image(); // variable para guardar la imagen
+      imagen5.src = "Madkitty.jpg"; // fuente de donde toma la imagen
+      var imagen6= new Image(); // variable para guardar la imagen
+      imagen6.src = "kitty.jpg"; // fuente de donde toma la imagen
+      imagen.onload = function(){
+        context.drawImage(imagen, x+50, y+5, 500, 500); //<== para poner imagen en el canvas
+      };
+
+    
+
+      function onKeyboardEvent (event) {
+        switch (event.keyCode) {
+        case keycode.A:
+          console.log("Letra A!");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Im silly', x+230, y-50);
+          context.drawImage(imagen2, x+50, y+5, 500, 500);
+          break;
+        case keycode.B:
+          console.log("Letra B!");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+           context.fillText('What did ya say?', x+130, y-50);
+          context.drawImage(imagen3, x+50, y+5, 500, 500);
+          break;
+        case keycode.C:
+          console.log("Letra C!");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Angy', x+250, y-50);
+          context.drawImage(imagen4, x+50, y+5, 500, 500);
+          break;
+           case keycode.D:
+          console.log("Letra D!");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+           context.fillText('lol, a cat in a bag', x+110, y-50);
+          context.drawImage(imagen5, x+50, y+5, 500, 500);
+          break;
+          case keycode.E:
+          console.log("Letra E!");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+           context.fillText('?', x+290, y-50);
+          context.drawImage(imagen6, x+50, y+5, 500, 500);
+          break;
+
+        default:
+          console.log(event.keyCode);
+        }
+      }
+
+      window.addEventListener('keydown', onKeyboardEvent, false);
+    };
+    </script>
+  </body>
+</html>
