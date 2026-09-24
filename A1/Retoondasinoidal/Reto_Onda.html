@@ -1,21 +1,18 @@
-<!doctype html>
+!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Heart wave</title>
     <style>
-      body { 
-       
-        background-color:rgb(255, 255, 255);
-        text-align: center;
-    
-      }
-
-    </style>
+  body { 
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+  }
+</style>
   </head>  
   <body>
     <canvas id="canvas" width="1000" height="700"></canvas>
-    x
+    
     <script src="utils.js"></script>
     <!-- <script src="./classes/pelota.js"></script> -->
     <script>
@@ -28,8 +25,8 @@
           pelota = new Image(),
           angle = 0,
           angle2=60,
-          centerScale = 1,
-          range = .2,
+          centerScale = .50,
+          range = .099,
           escalaX = 1,
           escalaY = 1,
           speed = 0.07,
@@ -38,7 +35,8 @@
           posicionY = 0,
           centerY = 0,
           rangeY = 100,
-          speedX = 6;
+          rangeX = 100,
+          speedX = 2;
           fondo.src = "Jardin.jpg"
           pelota.src = "bee.png";
 
@@ -49,10 +47,27 @@
         
       //ball.x = canvas.width / 2;
       //ball.y = canvas.height / 2;
-        
+        var dashOffset = 0;
+      
+
       (function drawFrame () {
         window.requestAnimationFrame(drawFrame, canvas);
         context.drawImage(fondo,0, 0, canvas.width, canvas.height);
+
+      
+
+      context.save();
+
+      context.setLineDash([15, 5]);    
+        dashOffset -= 2;
+      context.lineDashOffset = dashOffset;
+      context.lineWidth = 5.5;
+      context.strokeStyle = "#FFFFFF";
+      
+
+      context.strokeRect(0, 0, canvas.width, canvas.height);
+
+      context.restore(); 
 
         context.save();
         context.translate(0, 200);
@@ -84,6 +99,8 @@
           speedY = -speedY;
            }
           posicionY += speedY;
+
+      
 
       }());
     };
