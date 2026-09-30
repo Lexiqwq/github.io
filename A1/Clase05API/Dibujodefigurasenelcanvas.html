@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Script para dibujar figuras</title>
+  </head>
+  <style>
+    body {
+  background-image: url("viejo_ordenador.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+canvas {
+  display: block;
+ margin: auto;
+ background-image: url("paintwindows.jpeg");
+ background-repeat: no-repeat;
+ background-size:cover;
+}
+</style>
+<body>
+    <canvas id="canvas" width="1200" height="675"></canvas>
+    <script>
+    window.onload = function () {
+      //Our code here...
+      var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d');
+
+          //cielo//
+          pt1 = {x: 100, y: 100},               //gradient start point
+          pt2 = {x: 100, y: 500},           //gradient end point
+          gradient = context.createLinearGradient(pt1.x, pt1.y, pt2.x, pt2.y);
+
+              //white to red
+              gradient.addColorStop(0, "#080B12");
+              gradient.addColorStop(1, "#001261");
+
+              context.fillStyle = gradient;
+              context.fillRect(114, 100, 1046, 370);
+            //cuadro en el cielo//
+              context.save();
+
+              context.fillStyle = "#07330B";
+              context.strokeStyle = "#07330B";
+              context.lineWidth = 3;
+
+              context.fillRect(114.55, 465, 1042.70, 100);
+              context.strokeRect(115.55, 465, 1042.70, 100);
+
+              context.restore();
+
+         /*--dibujo de casita sencilla con triangulo y rectangulo--*/  
+         context.save();
+          context.beginPath();
+          context.lineWidth = 2.5;
+          context.strokeStyle = '#A37355';
+          context.fillStyle = '#BA835F';
+          context.moveTo(755.2605,443.0123);
+          context.lineTo(831.6774,443.0123);
+          context.lineTo(831.6774,509.66);
+          context.lineTo(755.2605,509.66);
+          context.lineTo(755.2605,443.0123);
+
+          context.moveTo(831.6774,443.052);
+          context.lineTo(831.6774,509.5814);
+          context.lineTo(935.2862,509.5814);
+          context.lineTo(935.2862,441.8852)
+          context.lineTo(831.6774,443.052);
+
+          context.fill();
+          context.stroke();
+          context.restore();
+
+          //techo de la casa//
+          context.save();
+          context.lineWidth = 2.5;
+          context.strokeStyle = '#3D2314';
+          context.fillStyle = '#54311B';
+          context.lineJoin = "round";
+          context.lineCap = "round";
+          context.beginPath();
+          context.moveTo(789.2197,397.7188);
+          context.lineTo(742.6719,443.052);
+          context.lineTo(838.3407,443.052);
+          context.lineTo(789.2197,397.7188);
+          
+          context.moveTo(789.2197,397.7188);
+          context.lineTo(838.3407,443.052);
+          context.lineTo(947.4211,441.6999);
+          context.lineTo(903.3391,397.6179);
+          context.lineTo(789.2197,397.6179);
+        
+          context.fill();
+          context.stroke();
+          context.restore();
+
+          //Estrella en el cielo//
+          context.save();
+          context.lineWidth = 2.5;
+          context.strokeStyle = '#FFDD12';
+          context.fillStyle = '#FFE442';
+          context.lineJoin = "round";
+          context.lineCap = "round";
+          context.beginPath();
+          context.moveTo(395.4422,233.0805);
+          context.lineTo(394.608,245.0493);
+          context.lineTo(382.9672,247.9545);
+          context.lineTo(394.0924,252.4464);
+          context.lineTo(393.2583,264.4152);
+          context.lineTo(400.9682,255.2226);
+          context.lineTo(412.0934,259.7145);
+          context.lineTo(405.7332,249.5412);
+          context.lineTo(413.4431,240.3486);
+          context.lineTo(401.8024,243.2538);
+          context.lineTo(395.4422,233.0805);
+
+
+          context.fill();
+          context.stroke();
+          context.restore();
+
+          //hongo constelación//
+          context.save();
+          context.lineWidth = 2.5;
+          context.strokeStyle = 'rgba(0, 255, 255, 0.2)';
+          context.lineCap = "round";
+          context.beginPath();
+          context.moveTo(552.187,175.7887);
+          context.lineTo(540.5223,193.658);
+          context.lineTo(539.4797,212.5184);
+          context.lineTo(535.9107,236.0772);
+          context.lineTo(549.2302,242.7612);
+          context.lineTo(578.533,232.0484);
+          context.lineTo(605.0001,221.0204);
+          context.lineTo(607.5207,208.102);
+          context.lineTo(590.8872,194.4096);
+          context.lineTo(574.0273,177.526);
+          context.lineTo(552.187,175.7887);
+          //Cuerpo del hongo//
+          context.moveTo(564.6235,237.2573);
+          context.lineTo(563.4234,245.1189);
+          context.lineTo(571.3026,248.0897);
+          context.lineTo(589.9027,241.5022);
+          context.lineTo(593.3902,232.7188);
+          context.lineTo(588.0943,228.198);
+          context.lineTo(564.6235,237.2573);
+          //cuerpo del hongo//
+          context.moveTo(572.4651,247.9606);
+          context.lineTo(574.2734,273.2774);
+          context.lineTo(586.6735,279.6066);
+          context.lineTo(599.461,274.9566);
+          context.lineTo(604.6277,260.4898);
+          context.lineTo(588.9985,242.148);
+          context.lineTo(572.4651,247.9606);
+
+          
+          context.stroke();
+          context.restore();
+          
+          context.save();
+
+          context.beginPath();
+          context.arc(288.0909, 198.7966, 80, 0, Math.PI * 2, true);
+
+          context.lineWidth = 0;
+          context.strokeStyle = "#CFCFCF";
+          context.fillStyle = '#CFCFCF';
+          context.stroke();
+
+          context.fill();
+          context.restore();
+
+          
+
+
+    };
+    </script>
+  </body>
+</html>
