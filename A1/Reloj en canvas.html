@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Simulación de reloj</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+    }
+    canvas {
+      max-width: 90vmin;
+      max-height: 90vmin;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="600" height="600"></canvas>
+
+  <script>
+    // Velocidad: 60 = cada segundo real equivale a 1 minuto del reloj.
+    // Pon 1 para que vaya a tiempo real.
+    var SPEED = 60;
+
+    window.onload = function () {
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var cx = canvas.width / 2;
+      var cy = canvas.height / 2;
+      var radius = 280;
+      var start = Date.now();
+      var baseTime = new Date();
+
+      function drawFace() {
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        // 12 marcas de hora
+        ctx.strokeStyle = '#2b2d42';
+        ctx.lineWidth = 8;
+        ctx.lineCap = 'round';
+        for (var i = 0; i < 12; i++) {
+          var a = i * Math.PI / 6;
+          ctx.beginPath();
+          ctx.moveTo(cx + Math.cos(a) * (radius - 40), cy + Math.sin(a) * (radius - 40));
+          ctx.lineTo(cx + Math.cos(a) * (radius - 15), cy + Math.sin(a) * (radius - 15));
+          ctx.stroke();
+        }
+      }
+
+      function drawHand(angle, length, width, color) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(length, 0);
+        ctx.lineWidth = width;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = color;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      (function drawFrame() {
+        requestAnimationFrame(drawFrame);
+
+        // Tiempo simulado acelerado
+        var elapsed = (Date.now() - start) * 300;
+        var now = new Date(baseTime.getTime() + elapsed);
+
+        var s = now.getSeconds() + now.getMilliseconds() / 1000;
+        var m = now.getMinutes() + s / 60;
+        var h = (now.getHours() % 12) + m / 60;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawFace();
+        drawHand(h * Math.PI / 6 - Math.PI / 2, 150, 14, '#2b2d42');
+        drawHand(m * Math.PI / 30 - Math.PI / 2, 220, 10, '#4361ee');
+        drawHand(s * Math.PI / 30 - Math.PI / 2, 250, 4, '#e63946');
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, 10, 0, Math.PI * 2);
+        ctx.fillStyle = '#e63946';
+        ctx.fill();
+      })();
+    };
+  </script>
+</body>
+</html>
+</content>
