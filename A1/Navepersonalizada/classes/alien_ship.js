@@ -25,4 +25,3 @@ Alien.prototype.draw = function (context) {
   
   context.restore();
 };
-
