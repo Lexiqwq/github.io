@@ -3,6 +3,8 @@ function Alien () {
   this.y = 0;
   this.rotation = 0;
   this.showFlame = false;
+  this.width = 60;
+  this.height = 60;
 }
 
 Alien.prototype.draw = function (context) {
