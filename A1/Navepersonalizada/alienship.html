@@ -73,7 +73,9 @@
         ship.x += vx;
         ship.y += vy;
         
-        //screen wrapping
+        
+       
+      //screen wrapping
         if (ship.x - ship.width / 2 > right) {
           ship.x = left - ship.width / 2;
         } else if (ship.x + ship.width / 2 < left) {
